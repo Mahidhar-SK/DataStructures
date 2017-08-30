@@ -171,10 +171,12 @@ void GetNode(struct node** head, int pos){
     struct node* temp = (struct node*)malloc(sizeof(struct node));
     temp = *head;
     int count = 0, val = 0;
+    int flag = 1;
     while(temp!=NULL){
         if(count == pos){
             val = temp->data;
             printf("%d\n",val);
+            flag = 0;
             break;
         }
         else{
@@ -183,5 +185,6 @@ void GetNode(struct node** head, int pos){
         count++;
 
     }
+    if(flag)printf("Invalid position\n");
 
 }
