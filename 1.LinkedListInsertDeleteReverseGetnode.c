@@ -12,15 +12,16 @@ void Insert_end(int x, struct node** head);
 void Insert_nth(int x,struct node** head, int pos);
 void Delete_nth(int pos, struct node** head);
 void Reverse(struct node** head);
+void GetNode(struct node** head, int pos);
 void Print(struct node* head);
 
 
 int main(){
     struct node* head = NULL;
-    int i,x,be,d, exit_flag=0;
+    int i,x,be,d,g,exit_flag=0;
     while(!exit_flag){
         
-        printf("1.Insert at Beginning\n2.Insert at End\n3.Insert at nth position\n4.Delete nth node\n5.Reverse List\n6.Exit\n");
+        printf("1.Insert at Beginning\n2.Insert at End\n3.Insert at nth position\n4.Delete nth node\n5.Reverse List\n6.Get node value\n7.Exit\n");
         scanf("%d",&be);
         switch(be){
             case 1:printf("Enter a number\n");
@@ -41,7 +42,11 @@ int main(){
                    Delete_nth(d, &head);
                    break;
             case 5:Reverse(&head);break;
-            case 6:exit_flag = 1;break;
+            case 6:printf("Enter Position\n");
+            scanf("%d",&g);
+            GetNode(&head,g);
+            break;
+            case 7:exit_flag = 1;break;
             
             default: printf("invalid choice\n");
         }
@@ -159,4 +164,24 @@ void Reverse(struct node** head){
         current = next;
     }
     *head = prev;
+}
+
+
+void GetNode(struct node** head, int pos){
+    struct node* temp = (struct node*)malloc(sizeof(struct node));
+    temp = *head;
+    int count = 0, val = 0;
+    while(temp!=NULL){
+        if(count == pos){
+            val = temp->data;
+            printf("%d\n",val);
+            break;
+        }
+        else{
+            temp = temp->next;
+        }
+        count++;
+
+    }
+
 }
