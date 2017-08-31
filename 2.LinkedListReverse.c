@@ -47,7 +47,7 @@ void Reverse(struct node** head){
     *head = prev;
 }
 
-void ReverseRec(struct node** head, struct node* p){ //Things are simpler if head is a global variable
+void ReverseRec(struct node** head, struct node* p){ //Things are simpler if head is global
     if(p->next==NULL){
         *head = p;
         return;
