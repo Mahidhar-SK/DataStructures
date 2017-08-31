@@ -10,6 +10,8 @@ struct node{
 void Insert_end(int x, struct node** head);
 void Print(struct node* head);
 void Reverse(struct node** head);
+void ReverseRec(struct node** head, struct node* p);
+
 
 void Insert_end(int x, struct node** head){
     struct node* temp = (struct node*)malloc(sizeof(struct node));
@@ -45,6 +47,17 @@ void Reverse(struct node** head){
     *head = prev;
 }
 
+void ReverseRec(struct node** head, struct node* p){ //Things are simpler if head is a global variable
+    if(p->next==NULL){
+        *head = p;
+        return;
+    }
+    ReverseRec(head, p->next);
+    p->next->next = p;
+    p->next = NULL;
+
+}
+
 void Print(struct node* head){
     printf("List is:\n");
     while(head!=NULL){
@@ -60,15 +73,15 @@ void main(){
     head = NULL;
     int ch = 0,x,flag = 0;
     while(1){
-        printf("1.Insert node\n2.Reverse List\n3.Exit\n");
+        printf("1.Insert node\n2.Reverse List\n3.Reverse List using recursion\n4.Exit\n");
         scanf("%d",&ch);
         switch(ch){
             case 1:printf("Enter Number\n");
             scanf("%d",&x);
             Insert_end(x, &head);
             break;
-
             case 2:Reverse(&head);break;
+            case 3:ReverseRec(&head, head);break;
             default:flag = 1;
         }
         Print(head);
